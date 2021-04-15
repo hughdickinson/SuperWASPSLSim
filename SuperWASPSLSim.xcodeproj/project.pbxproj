@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		37C2B0DC2626DDAB00B038C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37C2B0DB2626DDAB00B038C2 /* main.cpp */; };
+		37C2B0F62628368F00B038C2 /* UniformCircularSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37C2B0F52628368F00B038C2 /* UniformCircularSource.cpp */; };
+		37C2B0FA262836AA00B038C2 /* NonUniformCircularSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37C2B0F9262836AA00B038C2 /* NonUniformCircularSource.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,11 @@
 /* Begin PBXFileReference section */
 		37C2B0D82626DDAB00B038C2 /* SuperWASPSLSim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SuperWASPSLSim; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C2B0DB2626DDAB00B038C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		37C2B0F2262835AD00B038C2 /* UniformCircularSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformCircularSource.h; sourceTree = "<group>"; };
+		37C2B0F3262835E600B038C2 /* NonUniformCircularSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonUniformCircularSource.h; sourceTree = "<group>"; };
+		37C2B0F42628362800B038C2 /* EinsteinRadius.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EinsteinRadius.hpp; sourceTree = "<group>"; };
+		37C2B0F52628368F00B038C2 /* UniformCircularSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformCircularSource.cpp; sourceTree = "<group>"; };
+		37C2B0F9262836AA00B038C2 /* NonUniformCircularSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NonUniformCircularSource.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +64,30 @@
 		37C2B0DA2626DDAB00B038C2 /* SuperWASPSLSim */ = {
 			isa = PBXGroup;
 			children = (
+				37C2B0F12628358700B038C2 /* src */,
+				37C2B0F02628357E00B038C2 /* include */,
 				37C2B0DB2626DDAB00B038C2 /* main.cpp */,
 			);
 			path = SuperWASPSLSim;
+			sourceTree = "<group>";
+		};
+		37C2B0F02628357E00B038C2 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37C2B0F2262835AD00B038C2 /* UniformCircularSource.h */,
+				37C2B0F3262835E600B038C2 /* NonUniformCircularSource.h */,
+				37C2B0F42628362800B038C2 /* EinsteinRadius.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37C2B0F12628358700B038C2 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37C2B0F52628368F00B038C2 /* UniformCircularSource.cpp */,
+				37C2B0F9262836AA00B038C2 /* NonUniformCircularSource.cpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C2B0FA262836AA00B038C2 /* NonUniformCircularSource.cpp in Sources */,
+				37C2B0F62628368F00B038C2 /* UniformCircularSource.cpp in Sources */,
 				37C2B0DC2626DDAB00B038C2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,16 +269,42 @@
 		37C2B0E02626DDAB00B038C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				HEADER_SEARCH_PATHS = (
+					/Applications/Scientific/install/include,
+					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
+				);
+				LIBRARY_SEARCH_PATHS = /Applications/Scientific/install/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					/Applications/Scientific/install/include,
+					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
+				);
 			};
 			name = Debug;
 		};
 		37C2B0E12626DDAB00B038C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				HEADER_SEARCH_PATHS = (
+					/Applications/Scientific/install/include,
+					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
+				);
+				LIBRARY_SEARCH_PATHS = /Applications/Scientific/install/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					/Applications/Scientific/install/include,
+					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
+				);
 			};
 			name = Release;
 		};
