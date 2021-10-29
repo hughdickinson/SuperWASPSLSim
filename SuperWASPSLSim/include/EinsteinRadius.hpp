@@ -8,6 +8,8 @@
 #ifndef EinsteinRadius_h
 #define EinsteinRadius_h
 
+#include <memory>
+
 #include <boost/units/base_units/astronomical/parsec.hpp>
 #include <boost/units/static_rational.hpp>
 #include <boost/units/make_scaled_unit.hpp>

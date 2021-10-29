@@ -32,6 +32,9 @@
 		37C2B0F42628362800B038C2 /* EinsteinRadius.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EinsteinRadius.hpp; sourceTree = "<group>"; };
 		37C2B0F52628368F00B038C2 /* UniformCircularSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformCircularSource.cpp; sourceTree = "<group>"; };
 		37C2B0F9262836AA00B038C2 /* NonUniformCircularSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NonUniformCircularSource.cpp; sourceTree = "<group>"; };
+		37C2B1022630A5A000B038C2 /* NonUniformCircularSource.pxd */ = {isa = PBXFileReference; lastKnownFileType = text; path = NonUniformCircularSource.pxd; sourceTree = "<group>"; };
+		37C2B1032630A6A600B038C2 /* PyNonUniformCircularSource.pyx */ = {isa = PBXFileReference; lastKnownFileType = text; path = PyNonUniformCircularSource.pyx; sourceTree = "<group>"; };
+		37C2B1052630A92800B038C2 /* setup.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = setup.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,7 @@
 		37C2B0DA2626DDAB00B038C2 /* SuperWASPSLSim */ = {
 			isa = PBXGroup;
 			children = (
+				37C2B1042630A8F500B038C2 /* python */,
 				37C2B0F12628358700B038C2 /* src */,
 				37C2B0F02628357E00B038C2 /* include */,
 				37C2B0DB2626DDAB00B038C2 /* main.cpp */,
@@ -88,6 +92,16 @@
 				37C2B0F9262836AA00B038C2 /* NonUniformCircularSource.cpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		37C2B1042630A8F500B038C2 /* python */ = {
+			isa = PBXGroup;
+			children = (
+				37C2B1022630A5A000B038C2 /* NonUniformCircularSource.pxd */,
+				37C2B1032630A6A600B038C2 /* PyNonUniformCircularSource.pyx */,
+				37C2B1052630A92800B038C2 /* setup.py */,
+			);
+			path = python;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +292,12 @@
 					/Applications/Scientific/install/include,
 					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
 				);
+				LD_RUNPATH_SEARCH_PATHS = /Applications/Scientific/install/lib;
 				LIBRARY_SEARCH_PATHS = /Applications/Scientific/install/lib;
+				OTHER_LDFLAGS = (
+					"-lcfitsio",
+					"-lCCfits",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (
 					/Applications/Scientific/install/include,
@@ -299,7 +318,12 @@
 					/Applications/Scientific/install/include,
 					/Users/hughdickinson/Documents/Development/SuperWASPSLSim/include,
 				);
+				LD_RUNPATH_SEARCH_PATHS = /Applications/Scientific/install/lib;
 				LIBRARY_SEARCH_PATHS = /Applications/Scientific/install/lib;
+				OTHER_LDFLAGS = (
+					"-lcfitsio",
+					"-lCCfits",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (
 					/Applications/Scientific/install/include,

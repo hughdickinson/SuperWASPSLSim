@@ -32,6 +32,10 @@ double UniformCircularSource::magnificationAtRadius(){
 
 double UniformCircularSource::magnification(double sourcePlaneCoordinate){
     
+    if (std::abs(sourcePlaneCoordinate - this->radiusUnitless) < 1e-5){
+        return this->magnificationAtRadius();
+    }
+    
     auto kernel1 = (sourcePlaneCoordinate - radiusUnitless);
     kernel1 *= kernel1;
     auto kernel2 = std::sqrt(4.0 + kernel1);
