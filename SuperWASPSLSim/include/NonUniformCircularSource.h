@@ -8,6 +8,8 @@
 #ifndef NonUniformCircularSource_h
 #define NonUniformCircularSource_h
 
+#include <vector>
+
 #include "UniformCircularSource.h"
 
 class NonUniformCircularSource : public UniformCircularSource {
@@ -25,6 +27,7 @@ public:
     NonUniformCircularSource(double radiusUnitless, double uLambda=0.6);
     ~NonUniformCircularSource();
     double magnification(double sourcePlaneCoordinate);
+    std::vector<double> magnifications(std::vector<double> const & sourcePlaneCoordinates);
     
 };
 

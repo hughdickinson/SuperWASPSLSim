@@ -55,6 +55,15 @@ double NonUniformCircularSource::magnification(double sourcePlaneCoordinate){
     return this->magnificationProfileIntegral(sourcePlaneCoordinate) / this->profileIntegral();
 }
 
+std::vector<double> NonUniformCircularSource::magnifications(std::vector<double> const & sourcePlaneCoordinates){
+    std::vector<double> res(sourcePlaneCoordinates.size());
+    std::transform(sourcePlaneCoordinates.begin(), sourcePlaneCoordinates.end(), res.begin(), [this](double sourcePlaneCoordinate){
+        return this->magnification(sourcePlaneCoordinate);
+    });
+    return res;
+}
+
+
 double NonUniformCircularSource::radialProfile(double radialCoordinate){  // 0.6 => V-band
     return 1.0 - this->uLambda + this->uLambda * std::sqrt(1.0 - std::pow((radialCoordinate / this->radiusUnitless), 2));
 }
