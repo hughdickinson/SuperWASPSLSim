@@ -4,14 +4,17 @@ from setuptools import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy as np
+import os
+
+basedir = os.path.split(os.getcwd())[0]
 
 extensions = [
     Extension(
         "PyNonUniformCircularSource",
         ["PyNonUniformCircularSource.pyx"],
         include_dirs=[
-            "/Users/hugh.dickinson/Documents/Development/SuperWASPSLSim/SuperWASPSLSim/include",
-            "/Applications/Scientific/install/include",
+            os.path.join(basedir, "include"),
+            os.path.join(basedir, "include", "boost"),
         ],
         extra_compile_args=["-std=c++14"],
     )
