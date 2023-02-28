@@ -13,10 +13,13 @@
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <boost/math/differentiation/finite_difference.hpp>
 
-NonUniformCircularSource::NonUniformCircularSource(double radiusUnitless, double uLambda) :
+NonUniformCircularSource::NonUniformCircularSource(double radiusUnitless, double uLambda, std::vector<double> ldCoeffs) :
 UniformCircularSource(radiusUnitless),
-uLambda(uLambda)
+ldCoeffs(ldCoeffs)
 {
+    if (ldCoeffs.empty()) {
+        ldCoeffs.push_back(uLambda);
+    }
 }
 
 NonUniformCircularSource::~NonUniformCircularSource(){
@@ -64,6 +67,25 @@ std::vector<double> NonUniformCircularSource::magnifications(std::vector<double>
 }
 
 
-double NonUniformCircularSource::radialProfile(double radialCoordinate){  // 0.6 => V-band
-    return 1.0 - this->uLambda + this->uLambda * std::sqrt(1.0 - std::pow((radialCoordinate / this->radiusUnitless), 2));
+double NonUniformCircularSource::radialProfile(double radialCoordinate){
+    double radiusRatio = (radialCoordinate / this->radiusUnitless);
+    double mu = std::sqrt(1.0 - std::pow(radiusRatio, 2)); // mu=cos(theta), theta=arcsin(radiusRatio)
+
+    switch(this->ldCoeffs.size()) {
+        case 2:
+            // Quadratic law
+            // Zdenek Kopal, ‘Detailed Effects of Limb Darkening upon Light and Velocity Curves of Close Binary Systems’, Harvard College Observatory Circular 454 (1 January 1950): 1–12.            
+            return 1.0 - this->ldCoeffs[0] * (1.0 - mu) - this->ldCoeffs[1] * std::pow((1.0 - mu), 2);
+
+        case 1: 
+            // Linear law
+            // 0.6 => V-band
+            // C. W. Allen, Astrophysical Quantities, London: University of London, 1973, https://ui.adsabs.harvard.edu/abs/1973asqu.book.....A.
+            // via Hans J. Witt and Shude Mao, ‘Can Lensed Stars Be Regarded as Pointlike for Microlensing by MACHOs?’, The Astrophysical Journal 430 (1 August 1994): 505, https://doi.org/10.1086/174426.
+            // Actually from K. Schwarzschild, ‘Ueber das Gleichgewicht der Sonnenatmosphäre’, Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse 1906 (1906): 41–53.
+            return 1.0 - this->ldCoeffs[0] * (1.0 - mu);
+
+        default:
+            throw std::logic_error("Unsupported number of coefficients for limb-darkening law");
+    }
 }
