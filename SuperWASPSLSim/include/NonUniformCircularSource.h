@@ -23,7 +23,7 @@ private:
     double magnificationDerivative(double radialCoordinate, double sourcePlaneCoordinate);
     
 public:
-    NonUniformCircularSource(double radiusUnitless, double uLambda=0.6, std::vector<double> ldCoeffs={});
+    NonUniformCircularSource(double radiusUnitless, double u1, double u2);
     ~NonUniformCircularSource();
     double magnification(double sourcePlaneCoordinate);
     std::vector<double> magnifications(std::vector<double> const & sourcePlaneCoordinates);

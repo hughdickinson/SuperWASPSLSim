@@ -9,16 +9,17 @@
 #include "UniformCircularSource.h"
 
 #include <cmath>
+#include <limits>
 
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <boost/math/differentiation/finite_difference.hpp>
 
-NonUniformCircularSource::NonUniformCircularSource(double radiusUnitless, double uLambda, std::vector<double> ldCoeffs) :
-UniformCircularSource(radiusUnitless),
-ldCoeffs(ldCoeffs)
+NonUniformCircularSource::NonUniformCircularSource(double radiusUnitless, double u1=0.6, double u2=std::numeric_limits<double>::quiet_NaN()) :
+UniformCircularSource(radiusUnitless)
 {
-    if (ldCoeffs.empty()) {
-        ldCoeffs.push_back(uLambda);
+    ldCoeffs = {u1};
+    if (!std::isnan(u2)) {
+        ldCoeffs.push_back(u2);
     }
 }
 

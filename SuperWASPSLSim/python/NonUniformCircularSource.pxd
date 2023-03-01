@@ -9,7 +9,7 @@ cdef extern from "../src/UniformCircularSource.cpp":
 # Declare the class with cdef
 cdef extern from "../include/NonUniformCircularSource.h":
     cdef cppclass NonUniformCircularSource:
-        NonUniformCircularSource(double, double) except +
+        NonUniformCircularSource(double, double, double) except +
         double magnification(double)
         vector[double] magnifications(vector[double])
         
